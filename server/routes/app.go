@@ -22,17 +22,45 @@ func App() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
-	router.GET("/", handler.MainHandler)
+	// start all routes in application
+	makeRoutes(router)
 
+	// load server config
 	config := loadConfig(tools.ConfigAddress)
 
+	// show server information
 	fmt.Println("App is running...")
 	infoApp := fmt.Sprintf("Visit App: http://%s:%s\n", config.SC.Host, config.SC.Port)
 	fmt.Println(infoApp)
 
+	// start engine (server)
 	address := fmt.Sprintf("%s:%s", config.SC.Host, config.SC.Port)
 	err := router.Run(address)
 	tools.CheckError(err, "failed to start the server!")
+}
+
+func makeRoutes(router *gin.Engine) {
+	// main route
+	mainRoutes(router)
+
+	// database routes
+	databaseRoutes(router)
+
+	// database maker routes
+	databaseMakerRoutes(router)
+}
+
+func mainRoutes(router *gin.Engine) {
+	router.GET("/", handler.MainHandler)
+}
+
+func databaseRoutes(router *gin.Engine) {
+	router.GET("categories", handler.CategoryHandler)
+	router.GET("category/:categoryID/subcategories", handler.SubcategoryHandler)
+}
+
+func databaseMakerRoutes(router *gin.Engine) {
+	router.GET("/maker/tables", handler.DatabaseMakerHandler)
 }
 
 func loadConfig(filename string) *Server {

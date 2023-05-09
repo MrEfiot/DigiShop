@@ -10,6 +10,8 @@ import (
 	"os"
 )
 
+var DB *gorm.DB
+
 type DBConfig struct {
 	DB Config `json:"database"`
 }
@@ -22,7 +24,7 @@ type Config struct {
 	Port     string `json:"port"`
 }
 
-func SetupDB() *gorm.DB {
+func makeDB() *gorm.DB {
 	config := loadConfig(tools.ConfigAddress)
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", config.DB.Username, config.DB.Password, config.DB.Host, config.DB.Port, config.DB.Database)
@@ -44,4 +46,8 @@ func loadConfig(filename string) *DBConfig {
 	tools.CheckError(err, "json unmarshal in load database config!")
 
 	return &dbConfig
+}
+
+func SetupDB() {
+	DB = makeDB()
 }

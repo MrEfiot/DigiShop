@@ -6,9 +6,9 @@ import (
 )
 
 func MakeDatabaseTables() {
-	// create database and setup operation
-	db := database.SetupDB()
-
 	// create category table in database
-	models.MakeCategoryTable(db)
+	models.MakeCategoryTable(database.DB)
+
+	// create subcategory table in database
+	models.MakeSubcategoryTable(database.DB)
 }
