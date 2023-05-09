@@ -6,9 +6,15 @@ import (
 )
 
 func MakeDatabaseTables() {
-	// create category table in database
+	// create category table
 	models.MakeCategoryTable(database.DB)
 
-	// create subcategory table in database
+	// create subcategory table
 	models.MakeSubcategoryTable(database.DB)
+	//
+	//// create product and review table
+	models.MakeProductTable(database.DB)
+	//
+	//// create review table
+	models.MakeReviewTable(database.DB)
 }

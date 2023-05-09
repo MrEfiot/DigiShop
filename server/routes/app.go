@@ -61,6 +61,7 @@ func databaseRoutes(router *gin.Engine) {
 
 func databaseMakerRoutes(router *gin.Engine) {
 	router.GET("/maker/tables", handler.DatabaseMakerHandler)
+	router.GET("/maker/seeders", handler.DatabaseSeederHandler)
 }
 
 func loadConfig(filename string) *Server {
