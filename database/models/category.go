@@ -12,7 +12,7 @@ type Category struct {
 	Description   string
 	Subcategories []Subcategory `gorm:"foreignKey:CategoryID"`
 	CreatedAt     time.Time
-	UpdatedAt     time.Time
+	UpdatedAt     *time.Time
 	DeletedAt     gorm.DeletedAt `gorm:"index"`
 }
 

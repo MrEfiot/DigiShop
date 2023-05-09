@@ -27,7 +27,7 @@ type Config struct {
 func makeDB() *gorm.DB {
 	config := loadConfig(tools.ConfigAddress)
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", config.DB.Username, config.DB.Password, config.DB.Host, config.DB.Port, config.DB.Database)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=True", config.DB.Username, config.DB.Password, config.DB.Host, config.DB.Port, config.DB.Database)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	tools.CheckError(err, "connecting to database!")

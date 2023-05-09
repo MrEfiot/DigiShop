@@ -19,7 +19,7 @@ func SubcategoryHandler(c *gin.Context) {
 	categoryID := c.Param("categoryID")
 
 	var category models.Category
-	err := database.DB.Preload("Subcategories.Category").First(&category, categoryID).Error
+	err := database.DB.Preload("Subcategories").First(&category, categoryID).Error
 	tools.CheckError(err, "failed preload subcategories")
 
 	subcategories := category.Subcategories

@@ -12,7 +12,6 @@ type Subcategory struct {
 	Description string
 	Image       string
 	CategoryID  uint `gorm:"index"`
-	Category    Category
 	CreatedAt   time.Time
 	UpdatedAt   *time.Time
 	DeletedAt   gorm.DeletedAt `gorm:"index"`
