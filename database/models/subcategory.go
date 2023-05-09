@@ -8,10 +8,10 @@ import (
 
 type Subcategory struct {
 	ID          uint   `gorm:"primaryKey"`
+	CategoryID  uint   `gorm:"index"`
 	Name        string `gorm:"unique;not null"`
 	Description string
 	Image       string
-	CategoryID  uint `gorm:"index"`
 	CreatedAt   time.Time
 	UpdatedAt   *time.Time
 	DeletedAt   gorm.DeletedAt `gorm:"index"`

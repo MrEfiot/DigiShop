@@ -7,12 +7,15 @@ import (
 )
 
 type Review struct {
-	gorm.Model
-	ProductID uint
+	ID        uint `gorm:"primaryKey"`
+	ProductID uint `gorm:"index"`
 	UserName  string
 	Comment   string
 	Rating    int
 	Date      time.Time
+	CreatedAt time.Time
+	UpdatedAt *time.Time
+	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
 func MakeReviewTable(db *gorm.DB) {
