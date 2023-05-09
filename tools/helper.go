@@ -1,6 +1,8 @@
 package tools
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func CheckError(err error, message string) {
 	if err != nil {
@@ -9,3 +11,5 @@ func CheckError(err error, message string) {
 		return
 	}
 }
+
+const ConfigAddress = "config/config.json"

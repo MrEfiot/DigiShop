@@ -2,10 +2,10 @@ package database
 
 import (
 	"DigiShop/tools"
-	"database/sql"
 	"encoding/json"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 	"os"
 )
 
@@ -21,22 +21,16 @@ type Config struct {
 	Port     string `json:"port"`
 }
 
-func Setup() *sql.DB {
-	config := loadConfig("config/config.json")
+func SetupDB() *gorm.DB {
+	config := loadConfig(tools.ConfigAddress)
 
-	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", config.DB.Username, config.DB.Password, config.DB.Host, config.DB.Port, config.DB.Database)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", config.DB.Username, config.DB.Password, config.DB.Host, config.DB.Port, config.DB.Database)
 
-	db, err := sql.Open("mysql", dataSourceName)
-	defer func(db *sql.DB) {
-		err := db.Close()
-		tools.CheckError(err, "closing to mysql!")
-	}(db)
-	tools.CheckError(err, "connecting to mysql!")
-
-	err = db.Ping()
-	tools.CheckError(err, "get ping from mysql!")
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	tools.CheckError(err, "connecting to database!")
 
 	fmt.Println("The connection to the database was established.")
+
 	return db
 }
 

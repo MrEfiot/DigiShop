@@ -1,8 +1,9 @@
 package main
 
-import "DigiShop/database"
+import (
+	"DigiShop/server/routes"
+)
 
 func main() {
-	// Setup Database
-	database.Setup()
+	routes.App()
 }
