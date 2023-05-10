@@ -1,7 +1,6 @@
 package models
 
 import (
-	"DigiShop/tools"
 	"gorm.io/gorm"
 	"time"
 )
@@ -15,9 +14,4 @@ type Review struct {
 	CreatedAt time.Time
 	UpdatedAt *time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
-}
-
-func MakeReviewTable(db *gorm.DB) {
-	err := db.AutoMigrate(&Review{})
-	tools.CheckError(err, "failed to migrate review table!")
 }

@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func SeedProductModel(db *gorm.DB) {
+func SeedProductsModel(db *gorm.DB) {
 	modelData := []models.Product{
 		{SubcategoryID: 1, Name: "Macbook Air M1", Image: "", TechnicalSpec: "", InstallationGuide: "", VideoLink: ""},
 		{SubcategoryID: 1, Name: "ASUS ROG Zephyrus G14", Image: "", TechnicalSpec: "", InstallationGuide: "", VideoLink: ""},

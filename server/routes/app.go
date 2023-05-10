@@ -1,11 +1,13 @@
 package routes
 
 import (
+	"DigiShop/middleware"
 	"DigiShop/server/handler"
 	"DigiShop/tools"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"io"
 	"os"
 )
 
@@ -18,9 +20,19 @@ type ServerConfig struct {
 	Port string `json:"port"`
 }
 
+func setupLogOutput() {
+	f, err := os.Create("gin.log")
+	tools.CheckError(err, "failed to create output logger")
+	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
+}
+
 func App() {
+	setupLogOutput()
+
 	gin.SetMode(gin.ReleaseMode)
-	router := gin.Default()
+	router := gin.New()
+
+	router.Use(gin.Recovery(), middleware.Logger())
 
 	// start all routes in application
 	makeRoutes(router)

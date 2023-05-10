@@ -13,8 +13,17 @@ func ExecuteSeeders() {
 	seeders.SeedSubcategoriesModel(database.DB)
 
 	// seed products model
-	seeders.SeedProductModel(database.DB)
+	seeders.SeedProductsModel(database.DB)
 
-	// seed reviews models
-	seeders.SeedReviewModel(database.DB)
+	// seed reviews model
+	seeders.SeedReviewsModel(database.DB)
+
+	// seed users model
+	seeders.SeedUsersModel(database.DB)
+
+	// seed roles permissions model
+	seeders.SeedRolesPermissionsModel(database.DB)
+
+	// seed users roles model
+	seeders.SeedUsersRolesModel(database.DB)
 }

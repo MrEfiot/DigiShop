@@ -1,7 +1,6 @@
 package models
 
 import (
-	"DigiShop/tools"
 	"gorm.io/gorm"
 	"time"
 )
@@ -14,9 +13,4 @@ type Category struct {
 	CreatedAt     time.Time
 	UpdatedAt     *time.Time
 	DeletedAt     gorm.DeletedAt `gorm:"index"`
-}
-
-func MakeCategoryTable(db *gorm.DB) {
-	err := db.AutoMigrate(&Category{})
-	tools.CheckError(err, "failed to migrate category table!")
 }

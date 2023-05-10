@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func SeedReviewModel(db *gorm.DB) {
+func SeedReviewsModel(db *gorm.DB) {
 	modelData := []models.Review{
 		{ProductID: 1, UserName: "Tomas", Comment: "That's Perfect!", Rating: 35},
 		{ProductID: 1, UserName: "Aida", Comment: "Very good:)", Rating: 120},
