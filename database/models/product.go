@@ -3,6 +3,7 @@ package models
 import (
 	"DigiShop/tools"
 	"gorm.io/gorm"
+	"mime/multipart"
 	"time"
 )
 
@@ -18,6 +19,15 @@ type Product struct {
 	CreatedAt         time.Time
 	UpdatedAt         *time.Time
 	DeletedAt         gorm.DeletedAt `gorm:"index"`
+}
+
+type ProductUpload struct {
+	Name              string                `form:"name" binding:"required"`
+	SubcategoryID     uint                  `form:"subcategoryID" binding:"required"`
+	Image             *multipart.FileHeader `form:"image" binding:"required"`
+	TechnicalSpec     *multipart.FileHeader `form:"technical_spec" binding:"required"`
+	InstallationGuide *multipart.FileHeader `form:"installation_guide" binding:"required"`
+	VideoLink         string                `form:"video_link" binding:"omitempty"`
 }
 
 func MakeProductTable(db *gorm.DB) {

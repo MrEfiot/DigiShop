@@ -52,6 +52,7 @@ func makeRoutes(router *gin.Engine) {
 
 func mainRoutes(router *gin.Engine) {
 	router.GET("/", handler.MainHandler)
+	router.POST("uploads", handler.UploadHandler)
 }
 
 func databaseRoutes(router *gin.Engine) {
@@ -62,8 +63,8 @@ func databaseRoutes(router *gin.Engine) {
 }
 
 func databaseMakerRoutes(router *gin.Engine) {
-	router.GET("/maker/tables", handler.DatabaseMakerHandler)
-	router.GET("/maker/seeders", handler.DatabaseSeederHandler)
+	router.GET("maker/tables", handler.DatabaseMakerHandler)
+	router.GET("maker/seeders", handler.DatabaseSeederHandler)
 }
 
 func loadConfig(filename string) *Server {
