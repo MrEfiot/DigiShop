@@ -57,6 +57,8 @@ func mainRoutes(router *gin.Engine) {
 func databaseRoutes(router *gin.Engine) {
 	router.GET("categories", handler.CategoryHandler)
 	router.GET("category/:categoryID/subcategories", handler.SubcategoryHandler)
+	router.GET("subcategory/:subcategoryID/products", handler.ProductHandler)
+	router.GET("products/:productID/reviews", handler.ReviewHandler)
 }
 
 func databaseMakerRoutes(router *gin.Engine) {

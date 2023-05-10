@@ -12,7 +12,6 @@ type Review struct {
 	UserName  string
 	Comment   string
 	Rating    int
-	Date      time.Time
 	CreatedAt time.Time
 	UpdatedAt *time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`

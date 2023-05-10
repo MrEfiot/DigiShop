@@ -8,6 +8,7 @@ import (
 
 type Product struct {
 	ID                uint   `gorm:"primaryKey"`
+	SubcategoryID     uint   `gorm:"index"`
 	Name              string `gorm:"unique;not null"`
 	Image             string
 	TechnicalSpec     string

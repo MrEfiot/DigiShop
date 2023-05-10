@@ -11,4 +11,10 @@ func ExecuteSeeders() {
 
 	// seed subcategories model
 	seeders.SeedSubcategoriesModel(database.DB)
+
+	// seed products model
+	seeders.SeedProductModel(database.DB)
+
+	// seed reviews models
+	seeders.SeedReviewModel(database.DB)
 }

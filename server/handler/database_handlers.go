@@ -25,3 +25,25 @@ func SubcategoryHandler(c *gin.Context) {
 	subcategories := category.Subcategories
 	c.JSON(http.StatusOK, subcategories)
 }
+
+func ProductHandler(c *gin.Context) {
+	subcategoryID := c.Param("subcategoryID")
+
+	var subcategory models.Subcategory
+	err := database.DB.Preload("Products.Reviews").First(&subcategory, subcategoryID).Error
+	tools.CheckError(err, "failed preload products")
+
+	products := subcategory.Products
+	c.JSON(http.StatusOK, products)
+}
+
+func ReviewHandler(c *gin.Context) {
+	productID := c.Param("productID")
+
+	var product models.Product
+	err := database.DB.Preload("Reviews").First(&product, productID).Error
+	tools.CheckError(err, "failed preload reviews")
+
+	reviews := product.Reviews
+	c.JSON(http.StatusOK, reviews)
+}
