@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"DigiShop/database/controller"
 	"DigiShop/database/models"
 	"DigiShop/tools"
 	"crypto/sha256"
@@ -54,6 +55,17 @@ func UploadHandler(c *gin.Context) {
 
 	err = c.SaveUploadedFile(upload.InstallationGuide, installGuideFilePath)
 	tools.CheckError(err, "failed to save image upload in product")
+
+	product := models.Product{
+		SubcategoryID:     upload.SubcategoryID,
+		Name:              upload.Name,
+		Image:             imageFilePath,
+		TechnicalSpec:     techSpecFilePath,
+		InstallationGuide: installGuideFilePath,
+		VideoLink:         upload.VideoLink,
+	}
+
+	controller.InsertProductTable(&product)
 }
 
 func getInfoFile(c *gin.Context, name string) string {

@@ -5,6 +5,12 @@
 </head>
 <body>
 <form action="http://127.0.0.1:8000/uploads" method="post" enctype="multipart/form-data">
+    <label for="subcategory_id">subcategory id:</label>
+    <input type="text" name="subcategory_id" id="subcategory_id"><br><br>
+
+    <label for="product_name">product name:</label>
+    <input type="text" name="product_name" id="product_name"><br><br>
+
     <label for="image">image:</label>
     <input type="file" name="image" id="image"><br><br>
 
@@ -13,6 +19,9 @@
 
     <label for="installation_guide">installation guide file:</label>
     <input type="file" name="installation_guide" id="installation_guide"><br><br>
+
+    <label for="video_link">Video Link:</label>
+    <input type="text" name="video_link" id="video_link"><br><br>
 
     <input type="submit" value="send">
 </form>

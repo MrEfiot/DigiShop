@@ -1,7 +1,6 @@
 package models
 
 import (
-	"DigiShop/tools"
 	"gorm.io/gorm"
 	"mime/multipart"
 	"time"
@@ -10,7 +9,7 @@ import (
 type Product struct {
 	ID                uint   `gorm:"primaryKey"`
 	SubcategoryID     uint   `gorm:"index"`
-	Name              string `gorm:"unique;not null"`
+	Name              string `gorm:"not null"`
 	Image             string
 	TechnicalSpec     string
 	InstallationGuide string
@@ -22,15 +21,10 @@ type Product struct {
 }
 
 type ProductUpload struct {
-	Name              string                `form:"name" binding:"required"`
-	SubcategoryID     uint                  `form:"subcategoryID" binding:"required"`
+	Name              string                `form:"product_name" binding:"required"`
+	SubcategoryID     uint                  `form:"subcategory_id" binding:"required"`
 	Image             *multipart.FileHeader `form:"image" binding:"required"`
 	TechnicalSpec     *multipart.FileHeader `form:"technical_spec" binding:"required"`
 	InstallationGuide *multipart.FileHeader `form:"installation_guide" binding:"required"`
 	VideoLink         string                `form:"video_link" binding:"omitempty"`
-}
-
-func MakeProductTable(db *gorm.DB) {
-	err := db.AutoMigrate(&Product{})
-	tools.CheckError(err, "failed to migrate product table!")
 }

@@ -2,6 +2,7 @@ package migrations
 
 import (
 	"DigiShop/database"
+	"DigiShop/database/controller"
 	"DigiShop/database/models"
 )
 
@@ -11,10 +12,10 @@ func MakeDatabaseTables() {
 
 	// create subcategory table
 	models.MakeSubcategoryTable(database.DB)
-	//
-	//// create product and review table
-	models.MakeProductTable(database.DB)
-	//
-	//// create review table
+
+	// create product and review table
+	controller.MakeProductTable(database.DB)
+
+	// create review table
 	models.MakeReviewTable(database.DB)
 }
