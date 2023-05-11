@@ -1,5 +1,19 @@
 {{define "upload_product"}}
-    <div class="container" style="margin-top: 5px">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/upload_product.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <div class="container">
         <h2>Upload File Form</h2>
         <form action="product_upload_handler" method="post" enctype="multipart/form-data">
             <div class="form-group">
@@ -37,7 +51,7 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {{end}}
 
 {{template "header" .}}

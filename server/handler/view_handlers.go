@@ -17,3 +17,9 @@ func ViewProductUploadHandler(c *gin.Context) {
 		"title": "Upload Product",
 	})
 }
+
+func ViewLoginHandler(c *gin.Context) {
+	c.HTML(http.StatusOK, "login.gohtml", gin.H{
+		"title": "Login",
+	})
+}

@@ -84,7 +84,8 @@ func mainRoutes(router *gin.Engine) {
 	router.LoadHTMLGlob("views/*")
 	router.GET("/", handler.ViewMainHandler)
 	router.GET("product_upload", handler.ViewProductUploadHandler)
-	router.POST("product_upload_handler", handler.UploadProductHandler)
+	router.POST("product_upload_handler", handler.ProductUploadHandler)
+	router.GET("login", handler.ViewLoginHandler)
 }
 
 func databaseRoutes(router *gin.Engine) {

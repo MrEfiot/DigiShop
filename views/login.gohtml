@@ -1,0 +1,39 @@
+{{define "login"}}
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <div class="container">
+        <h2>Login Form</h2>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                <small class="form-text text-muted">Forgot your password? <a href="#">Reset it</a>.</small>
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <p>Or login with:</p>
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="text-center mt-3">
+            Don't have an account? <a href="#">Sign up</a>.
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{{end}}
+
+
+{{template "header" .}}
+{{template "login"}}
+{{template "footer"}}

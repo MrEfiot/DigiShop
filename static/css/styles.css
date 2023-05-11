@@ -1,0 +1,4 @@
+.bg-pattern {
+    background-image: url('/static/patterns/shop-pattern.webp');
+    background-repeat: repeat;
+}
