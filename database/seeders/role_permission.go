@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func SeedRolesPermissionsModel(db *gorm.DB) {
+func SeedRolePermissionsModel(db *gorm.DB) {
 	modelData := []models.RolePermission{
 		{Role: "owner", Permission: "read"},
 		{Role: "owner", Permission: "write"},

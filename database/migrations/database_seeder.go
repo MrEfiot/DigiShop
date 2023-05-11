@@ -22,7 +22,7 @@ func ExecuteSeeders() {
 	seeders.SeedUsersModel(database.DB)
 
 	// seed roles permissions model
-	seeders.SeedRolesPermissionsModel(database.DB)
+	seeders.SeedRolePermissionsModel(database.DB)
 
 	// seed users roles model
 	seeders.SeedUsersRolesModel(database.DB)

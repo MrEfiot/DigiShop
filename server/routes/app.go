@@ -20,6 +20,17 @@ type ServerConfig struct {
 	Port string `json:"port"`
 }
 
+func loadConfig(filename string) *Server {
+	file, err := os.ReadFile(filename)
+	tools.CheckError(err, "open database config!")
+
+	var SC Server
+	err = json.Unmarshal(file, &SC)
+	tools.CheckError(err, "json unmarshal in load database config!")
+
+	return &SC
+}
+
 func setupLogOutput() {
 	f, err := os.Create("gin.log")
 	tools.CheckError(err, "failed to create output logger")
@@ -60,6 +71,9 @@ func makeRoutes(router *gin.Engine) {
 
 	// database maker routes
 	databaseMakerRoutes(router)
+
+	// user routes
+	userRoutes(router)
 }
 
 func mainRoutes(router *gin.Engine) {
@@ -79,13 +93,6 @@ func databaseMakerRoutes(router *gin.Engine) {
 	router.GET("maker/seeders", handler.DatabaseSeederHandler)
 }
 
-func loadConfig(filename string) *Server {
-	file, err := os.ReadFile(filename)
-	tools.CheckError(err, "open database config!")
-
-	var SC Server
-	err = json.Unmarshal(file, &SC)
-	tools.CheckError(err, "json unmarshal in load database config!")
-
-	return &SC
+func userRoutes(router *gin.Engine) {
+	router.GET("users", handler.UserHandler)
 }
