@@ -11,8 +11,8 @@ type User struct {
 	Family          string `gorm:"not null"`
 	Age             int
 	NationalCode    string
-	PhoneNumber     string
-	Email           string
+	PhoneNumber     string `gorm:"unique"`
+	Email           string `gorm:"unique"`
 	Password        string
 	RolePermissions []RolePermission `gorm:"many2many:user_roles;"`
 	CreatedAt       time.Time
