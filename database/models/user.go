@@ -13,6 +13,7 @@ type User struct {
 	NationalCode    string
 	PhoneNumber     string
 	Email           string
+	Password        string
 	RolePermissions []RolePermission `gorm:"many2many:user_roles;"`
 	CreatedAt       time.Time
 	UpdatedAt       *time.Time
