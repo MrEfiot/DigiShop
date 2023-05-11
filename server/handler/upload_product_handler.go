@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-func UploadHandler(c *gin.Context) {
+func UploadProductHandler(c *gin.Context) {
 	var upload models.ProductUpload
 	err := c.ShouldBind(&upload)
 	tools.CheckError(err, "failed to bind upload product data")

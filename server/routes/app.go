@@ -43,6 +43,10 @@ func App() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
 
+	// set static file
+	router.Static("/static", "./static")
+
+	// set middleware
 	router.Use(gin.Recovery(), middleware.Logger())
 
 	// start all routes in application
@@ -77,8 +81,10 @@ func makeRoutes(router *gin.Engine) {
 }
 
 func mainRoutes(router *gin.Engine) {
-	router.GET("/", handler.MainHandler)
-	router.POST("uploads", handler.UploadHandler)
+	router.LoadHTMLGlob("views/*")
+	router.GET("/", handler.ViewMainHandler)
+	router.GET("product_upload", handler.ViewProductUploadHandler)
+	router.POST("product_upload_handler", handler.UploadProductHandler)
 }
 
 func databaseRoutes(router *gin.Engine) {
