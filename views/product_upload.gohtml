@@ -1,0 +1,45 @@
+{{define "upload_product"}}
+    <div class="container" style="margin-top: 5px">
+        <h2>Upload File Form</h2>
+        <form action="product_upload_handler" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="subcategory_id">Subcategory ID:</label>
+                <input type="text" class="form-control" name="subcategory_id" id="subcategory_id">
+            </div>
+
+            <div class="form-group">
+                <label for="product_name">Product Name:</label>
+                <input type="text" class="form-control" name="product_name" id="product_name">
+            </div>
+
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" class="form-control-file" name="image" id="image">
+            </div>
+
+            <div class="form-group">
+                <label for="technical_spec">Technical Spec File:</label>
+                <input type="file" class="form-control-file" name="technical_spec" id="technical_spec">
+            </div>
+
+            <div class="form-group">
+                <label for="installation_guide">Installation Guide File:</label>
+                <input type="file" class="form-control-file" name="installation_guide" id="installation_guide">
+            </div>
+
+            <div class="form-group">
+                <label for="video_link">Video Link:</label>
+                <input type="text" class="form-control" name="video_link" id="video_link">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Send</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2"></script>
+{{end}}
+
+{{template "header" .}}
+{{template "upload_product"}}
+{{template "footer"}}

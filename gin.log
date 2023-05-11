@@ -1,5 +1,2 @@
-127.0.0.1 - [11 May 23 05:45 +0330] POST /upload_product_handler 404 125ns 
-127.0.0.1 - [11 May 23 05:45 +0330] GET /product_upload 200 154.834µs 
-127.0.0.1 - [11 May 23 05:45 +0330] POST /product_upload_handler 200 18.760917ms 
-127.0.0.1 - [11 May 23 05:48 +0330] GET /subcategory/1/products 200 5.301709ms 
-127.0.0.1 - [11 May 23 05:49 +0330] GET / 200 174.5µs 
+127.0.0.1 - [11 May 23 19:30 +0330] GET /product_upload 200 491.542µs 
+127.0.0.1 - [11 May 23 19:31 +0330] POST /product_upload_handler 200 29.709417ms 
