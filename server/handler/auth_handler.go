@@ -10,12 +10,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"net/http"
-	"strconv"
 	"time"
 )
 
 type Claims struct {
-	UserID string `json:"user_id"`
+	UserID uint `json:"user_id"`
 	jwt.StandardClaims
 }
 
@@ -46,7 +45,7 @@ func createToken(userID uint) (string, time.Time) {
 	expirationTime := time.Now().Add(24 * time.Hour)
 
 	claims := &Claims{
-		UserID: strconv.Itoa(int(userID)),
+		UserID: userID,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
 		},
