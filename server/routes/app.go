@@ -47,7 +47,7 @@ func App() {
 	router.Static("/static", "./static")
 
 	// set middleware
-	router.Use(gin.Recovery(), middleware.Logger())
+	setMiddleware(router)
 
 	// start all routes in application
 	makeRoutes(router)
@@ -64,6 +64,13 @@ func App() {
 	address := fmt.Sprintf("%s:%s", config.SC.Host, config.SC.Port)
 	err := router.Run(address)
 	tools.CheckError(err, "failed to start the server!")
+}
+
+func setMiddleware(router *gin.Engine) {
+	router.Use(gin.Recovery())
+	router.Use(middleware.Logger())
+	router.Use(middleware.AuthMiddleware())
+	router.Use(middleware.AuthRequired())
 }
 
 func makeRoutes(router *gin.Engine) {

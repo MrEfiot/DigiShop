@@ -10,8 +10,14 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"net/http"
+	"strconv"
 	"time"
 )
+
+type Claims struct {
+	UserID string `json:"user_id"`
+	jwt.StandardClaims
+}
 
 func AuthHandler(c *gin.Context) {
 	email := c.PostForm("email")
@@ -37,13 +43,16 @@ func AuthHandler(c *gin.Context) {
 }
 
 func createToken(userID uint) (string, time.Time) {
-	token := jwt.New(jwt.SigningMethodHS256)
-	claims := token.Claims.(jwt.MapClaims)
-
-	claims["user_id"] = userID
-
 	expirationTime := time.Now().Add(24 * time.Hour)
-	claims["exp"] = expirationTime.Unix()
+
+	claims := &Claims{
+		UserID: strconv.Itoa(int(userID)),
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: expirationTime.Unix(),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
 	tokenString, err := token.SignedString([]byte("DigiShop_KEY"))
 	tools.CheckError(err, "failed to generate jwt token")
