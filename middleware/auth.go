@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"DigiShop/database/controller"
 	"DigiShop/server/handler"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
@@ -69,27 +68,12 @@ func AuthRequired() gin.HandlerFunc {
 			return
 		}
 
-		userID := claims.UserID
-
-		permissions := controller.GetUserPermissions(userID)
-		accessPermission := false
-
-		for i := range permissions {
-			if permissions[i] == "write" {
-				accessPermission = true
-			}
-		}
-
-		if !accessPermission {
-			c.Redirect(http.StatusTemporaryRedirect, "/")
-		}
-
 		c.Next()
 	}
 }
 
 func shouldSkipAuth(path string) bool {
-	paths := []string{"/product_upload", "/categories"}
+	paths := []string{"/admin/product_upload", "/db/categories"}
 	active := true
 
 	for i := range paths {

@@ -13,18 +13,12 @@ func MakeUserTable(db *gorm.DB) {
 	tools.CheckError(err, "failed to migrate user table")
 }
 
-func GetUserPermissions(UserID uint) []string {
+func GetUserRole(UserID uint) string {
 	var user models.User
 	err := database.DB.Preload("RolePermissions").First(&user, UserID).Error
-	tools.CheckError(err, "failed to get user permissions")
+	tools.CheckError(err, "failed to get user roles")
 
-	var permissions []string
-
-	for _, rolePermission := range user.RolePermissions {
-		permissions = append(permissions, rolePermission.Permission)
-	}
-
-	return permissions
+	return user.RolePermissions[0].Role
 }
 
 func HashPassword(password string) string {

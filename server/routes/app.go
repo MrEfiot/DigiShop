@@ -85,22 +85,30 @@ func makeRoutes(router *gin.Engine) {
 
 	// user routes
 	userRoutes(router)
+
+	// admin routes
+	adminRoutes(router)
 }
 
 func mainRoutes(router *gin.Engine) {
 	router.LoadHTMLGlob("views/*")
 	router.GET("/", handler.ViewMainHandler)
-	router.GET("product_upload", handler.ViewProductUploadHandler)
-	router.POST("product_upload_handler", handler.ProductUploadHandler)
 	router.GET("login", handler.ViewLoginHandler)
 	router.POST("auth", handler.AuthHandler)
 }
 
+func adminRoutes(router *gin.Engine) {
+	r := router.Group("/admin/")
+	r.GET("product_upload", middleware.PageAccessMiddleware("owner", "super_admin", "admin"), handler.ViewProductUploadHandler)
+	r.POST("product_upload_handler", middleware.PageAccessMiddleware("owner", "super_admin", "admin"), handler.ProductUploadHandler)
+}
+
 func databaseRoutes(router *gin.Engine) {
-	router.GET("categories", handler.CategoryHandler)
-	router.GET("category/:categoryID/subcategories", handler.SubcategoryHandler)
-	router.GET("subcategory/:subcategoryID/products", handler.ProductHandler)
-	router.GET("products/:productID/reviews", handler.ReviewHandler)
+	r := router.Group("/db/")
+	r.GET("categories", middleware.PageAccessMiddleware("owner", "super_admin", "admin", "user"), handler.CategoryHandler)
+	r.GET("category/:categoryID/subcategories", handler.SubcategoryHandler)
+	r.GET("subcategory/:subcategoryID/products", handler.ProductHandler)
+	r.GET("products/:productID/reviews", handler.ReviewHandler)
 }
 
 func databaseMakerRoutes(router *gin.Engine) {
