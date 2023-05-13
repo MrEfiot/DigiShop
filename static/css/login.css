@@ -73,3 +73,7 @@ body {
     color: rgba(28, 28, 28, 0.85);
     background-color: rgba(0, 179, 164, 0.69);
 }
+
+.error-message {
+    color: red;
+}

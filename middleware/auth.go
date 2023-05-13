@@ -73,7 +73,7 @@ func AuthRequired() gin.HandlerFunc {
 }
 
 func shouldSkipAuth(path string) bool {
-	paths := []string{"/admin/product_upload", "/db/categories"}
+	paths := []string{"DigiShop"}
 	active := true
 
 	for i := range paths {

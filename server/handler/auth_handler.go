@@ -33,9 +33,9 @@ func AuthHandler(c *gin.Context) {
 	if success {
 		token, expireTime := createToken(user.ID)
 		setCookieToken(token, expireTime, c)
-		c.String(http.StatusOK, "Logged in successfully")
+		c.Redirect(http.StatusSeeOther, "/dashboard")
 	} else {
-		c.String(http.StatusOK, "password is wrong!")
+		c.Redirect(http.StatusSeeOther, "/login?error=wrong-password")
 		return
 	}
 

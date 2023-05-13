@@ -18,7 +18,20 @@ func ViewProductUploadHandler(c *gin.Context) {
 	})
 }
 
+func ViewDashboardHandler(c *gin.Context) {
+	c.HTML(http.StatusOK, "dashboard.gohtml", gin.H{
+		"title": "Dashboard",
+	})
+}
+
 func ViewLoginHandler(c *gin.Context) {
+	errorMessage := c.Query("error")
+	if errorMessage == "wrong-password" {
+		c.HTML(http.StatusOK, "login.gohtml", gin.H{
+			"error": "your password is wrong!",
+		})
+		return
+	}
 	c.HTML(http.StatusOK, "login.gohtml", gin.H{
 		"title": "Login",
 	})
