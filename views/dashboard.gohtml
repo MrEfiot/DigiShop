@@ -1,7 +1,47 @@
 {{define "dashboard"}}
-    <h1>Welcome to dashboard</h1>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .dashboard-box {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .variables {
+            color: #00b3a4;
+        }
+
+        .logout-btn {
+            margin-top: 20px;
+        }
+    </style>
+    <div class="container">
+        <div class="text-center dashboard-box">
+            <h1>Welcome to Dashboard <span class="variables">{{.name}}</span> <span class="variables">{{.family}}</span>
+            </h1>
+            <h2>Your access level: <span class="variables">{{.role}}</span></h2>
+            <h2>Your email: <span class="variables">{{.email}}</span></h2>
+
+            <a href="/logout" class="btn btn-primary logout-btn">Logout</a>
+        </div>
+    </div>
 {{end}}
 
 {{template "header" .}}
-{{template "dashboard"}}
+{{template "dashboard" .}}
 {{template "footer"}}

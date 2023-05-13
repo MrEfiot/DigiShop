@@ -12,6 +12,10 @@ func PageAccessMiddleware(allowedRoles ...string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		tokenString, err := c.Cookie("token")
 		if err != nil {
+			path := c.Request.URL.Path
+			if path == "/dashboard" {
+				c.Redirect(http.StatusSeeOther, "/login")
+			}
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"error": "Unauthorized",
 			})

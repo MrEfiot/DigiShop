@@ -93,6 +93,7 @@ func mainRoutes(router *gin.Engine) {
 	router.GET("/dashboard", middleware.PageAccessMiddleware("owner", "super_admin", "admin", "user"), handler.ViewDashboardHandler)
 	router.GET("/login", handler.ViewLoginHandler)
 	router.POST("/auth", handler.AuthHandler)
+	router.GET("/logout", handler.LogoutHandler)
 }
 
 func adminRoutes(router *gin.Engine) {

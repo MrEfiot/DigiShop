@@ -41,6 +41,11 @@ func AuthHandler(c *gin.Context) {
 
 }
 
+func LogoutHandler(c *gin.Context) {
+	c.SetCookie("token", "", -1, "/", "", false, true)
+	c.Redirect(http.StatusSeeOther, "/login")
+}
+
 func createToken(userID uint) (string, time.Time) {
 	expirationTime := time.Now().Add(24 * time.Hour)
 
