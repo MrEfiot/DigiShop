@@ -25,7 +25,7 @@ func AuthHandler(c *gin.Context) {
 	var user models.User
 	err := database.DB.Where("email = ?", email).First(&user).Error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		c.String(http.StatusOK, "email not found!")
+		c.Redirect(http.StatusSeeOther, "/login?error=email-not-found")
 		return
 	}
 

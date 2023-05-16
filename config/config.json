@@ -9,5 +9,11 @@
   "server": {
     "host": "127.0.0.1",
     "port": "8000"
+  },
+  "access_level": {
+    "level_one": "owner",
+    "level_two": "super_admin",
+    "level_three": "admin",
+    "leve_four": "user"
   }
 }

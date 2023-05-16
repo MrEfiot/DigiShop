@@ -8,18 +8,10 @@ import (
 
 func SeedRolePermissionsModel(db *gorm.DB) {
 	modelData := []models.RolePermission{
-		{Role: "owner", Permission: "read"},
-		{Role: "owner", Permission: "write"},
-		{Role: "owner", Permission: "create"},
-		{Role: "owner", Permission: "update"},
-		{Role: "owner", Permission: "delete"},
-		{Role: "super_admin", Permission: "read"},
-		{Role: "super_admin", Permission: "write"},
-		{Role: "super_admin", Permission: "create"},
-		{Role: "super_admin", Permission: "update"},
-		{Role: "admin", Permission: "read"},
-		{Role: "admin", Permission: "write"},
-		{Role: "user", Permission: "read"},
+		{Role: "owner", Permission: "owner"},
+		{Role: "super_admin", Permission: "super admin"},
+		{Role: "admin", Permission: "admin"},
+		{Role: "user", Permission: "user"},
 	}
 
 	tx := db.Begin()

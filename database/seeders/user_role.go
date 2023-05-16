@@ -9,17 +9,9 @@ import (
 func SeedUsersRolesModel(db *gorm.DB) {
 	modelData := []models.UserRole{
 		{UserID: 1, RolePermissionID: 1},
-		{UserID: 1, RolePermissionID: 2},
-		{UserID: 1, RolePermissionID: 3},
-		{UserID: 1, RolePermissionID: 4},
-		{UserID: 1, RolePermissionID: 5},
-		{UserID: 2, RolePermissionID: 6},
-		{UserID: 2, RolePermissionID: 7},
-		{UserID: 2, RolePermissionID: 8},
-		{UserID: 2, RolePermissionID: 9},
-		{UserID: 3, RolePermissionID: 10},
-		{UserID: 3, RolePermissionID: 11},
-		{UserID: 4, RolePermissionID: 12},
+		{UserID: 2, RolePermissionID: 2},
+		{UserID: 3, RolePermissionID: 3},
+		{UserID: 4, RolePermissionID: 4},
 	}
 
 	tx := db.Begin()

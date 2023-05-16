@@ -19,3 +19,14 @@ type User struct {
 	UpdatedAt       *time.Time
 	DeletedAt       gorm.DeletedAt `gorm:"index"`
 }
+
+type UserForm struct {
+	Name             string `form:"name" binding:"required"`
+	Family           string `form:"family" binding:"required"`
+	Age              int    `form:"age"`
+	NationalCode     string `form:"national_code"`
+	PhoneNumber      string `form:"phone_number" binding:"required_without=Email"`
+	Email            string `form:"email" binding:"required_without=PhoneNumber"`
+	Password         string `form:"password"`
+	RolePermissionID uint   `form:"role_permission_id"`
+}

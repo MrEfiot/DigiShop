@@ -6,11 +6,13 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
-func PageAccessMiddleware(allowedRoles ...string) gin.HandlerFunc {
+func AccessControlMiddleware(allowedRoles ...string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		tokenString, err := c.Cookie("token")
+
 		if err != nil {
 			path := c.Request.URL.Path
 			if path == "/dashboard" {
@@ -28,9 +30,20 @@ func PageAccessMiddleware(allowedRoles ...string) gin.HandlerFunc {
 			return []byte("DigiShop_KEY"), nil
 		})
 
+		expirationUnix := claims.ExpiresAt
+		expirationTime := time.Unix(expirationUnix, 0)
+
+		if time.Now().After(expirationTime) {
+			c.SetCookie("token", "", -1, "", "", false, true)
+
+			c.Redirect(http.StatusTemporaryRedirect, "/login")
+			c.Abort()
+			return
+		}
+
 		if err != nil || !token.Valid {
 			c.JSON(http.StatusUnauthorized, gin.H{
-				"error": "Invalid token",
+				"error": "Invalid tokens",
 			})
 			c.Abort()
 			return
