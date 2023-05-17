@@ -30,8 +30,15 @@ func AddUserHandler(c *gin.Context) {
 
 	tx := database.DB.Begin()
 
+	rolePermission := models.RolePermission{}
+
+	if userForm.RolePermissionID != 0 {
+		rolePermission = getRolePermission(tx, userForm.RolePermissionID, c)
+	} else {
+		rolePermission = getRolePermission(tx, 4, c)
+	}
+
 	checkExistingEmailAndPhone(tx, userForm, c)
-	rolePermission := getRolePermission(tx, userForm, c)
 
 	user := models.User{
 		Name:            userForm.Name,
@@ -128,9 +135,9 @@ func checkExistingEmailAndPhone(tx *gorm.DB, userForm models.UserForm, c *gin.Co
 
 }
 
-func getRolePermission(tx *gorm.DB, userForm models.UserForm, c *gin.Context) models.RolePermission {
+func getRolePermission(tx *gorm.DB, roleID uint, c *gin.Context) models.RolePermission {
 	var rolePermission models.RolePermission
-	err := tx.Where("id = ?", userForm.RolePermissionID).First(&rolePermission).Error
+	err := tx.Where("id = ?", roleID).First(&rolePermission).Error
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "role permission not found"})
 		tx.Rollback()
