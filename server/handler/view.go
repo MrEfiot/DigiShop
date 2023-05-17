@@ -49,10 +49,12 @@ func ViewDashboardHandler(c *gin.Context) {
 }
 
 func ViewLoginHandler(c *gin.Context) {
+	email := c.Query("email")
 	errorMessage := c.Query("error")
 	if errorMessage == "wrong-password" {
 		c.HTML(http.StatusOK, "login.gohtml", gin.H{
 			"error": "Your password is wrong!",
+			"email": email,
 		})
 		return
 	}
@@ -60,6 +62,7 @@ func ViewLoginHandler(c *gin.Context) {
 	if errorMessage == "email-not-found" {
 		c.HTML(http.StatusOK, "login.gohtml", gin.H{
 			"error": "Email not found!",
+			"email": email,
 		})
 		return
 	}

@@ -1,3 +1,9 @@
-127.0.0.1 - [17 May 23 04:07 +0330] POST /admin/users/add 422 140.407375ms 
-127.0.0.1 - [17 May 23 04:07 +0330] POST /admin/users/add 422 107.6025ms 
-127.0.0.1 - [17 May 23 04:07 +0330] POST /admin/users/add 200 132.628458ms 
+127.0.0.1 - [17 May 23 04:18 +0330] GET /login 200 464.833µs 
+127.0.0.1 - [17 May 23 04:18 +0330] POST /auth 303 3.646625ms 
+127.0.0.1 - [17 May 23 04:18 +0330] GET /login?error=email-not-found&email=Overz.ir@gmail.com 200 75.25µs 
+127.0.0.1 - [17 May 23 04:18 +0330] POST /admin/users/add 422 114.425666ms 
+127.0.0.1 - [17 May 23 04:18 +0330] POST /admin/users/add 200 105.058375ms 
+127.0.0.1 - [17 May 23 04:18 +0330] POST /auth 303 110.079125ms 
+127.0.0.1 - [17 May 23 04:18 +0330] GET /login?error=wrong-password&email=Overz.ir@gmail.com 200 30.583µs 
+127.0.0.1 - [17 May 23 04:19 +0330] POST /auth 303 108.0835ms 
+127.0.0.1 - [17 May 23 04:19 +0330] GET /dashboard 200 2.655542ms 

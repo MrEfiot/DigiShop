@@ -37,6 +37,16 @@
             <h2>Your access level: <span class="variables">{{.role}}</span></h2>
             <h2>Your email: <span class="variables">{{.email}}</span></h2>
 
+            {{if eq .role "owner"}}
+                <h1>You can delete all user and more</h1>
+            {{else if eq .role "super-admin"}}
+                <h1>You can update all user and more</h1>
+            {{else if eq .role "admin"}}
+                <h1>You can create new product</h1>
+            {{else}}
+                <h1>your can watch and shopping</h1>
+            {{end}}
+
             <a href="/logout" class="btn btn-primary logout-btn">Logout</a>
         </div>
     </div>

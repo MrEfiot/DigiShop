@@ -25,7 +25,7 @@ func AuthHandler(c *gin.Context) {
 	var user models.User
 	err := database.DB.Where("email = ?", email).First(&user).Error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		c.Redirect(http.StatusSeeOther, "/login?error=email-not-found")
+		c.Redirect(http.StatusSeeOther, "/login?error=email-not-found&email="+email)
 		return
 	}
 
@@ -35,7 +35,7 @@ func AuthHandler(c *gin.Context) {
 		setCookieToken(token, expireTime, c)
 		c.Redirect(http.StatusSeeOther, "/dashboard")
 	} else {
-		c.Redirect(http.StatusSeeOther, "/login?error=wrong-password")
+		c.Redirect(http.StatusSeeOther, "/login?error=wrong-password&email="+email)
 		return
 	}
 
