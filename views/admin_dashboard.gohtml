@@ -1,0 +1,45 @@
+{{define "admin_dashboard"}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .menu-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-box a {
+            display: block;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-box a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="menu-box">
+        <a href="tables">Tables</a>
+        <a href="account">Account</a>
+        <a href="password">Password</a>
+        <a href="help">Help</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+{{end}}
+
+{{template "header" .}}
+{{template "admin_dashboard" .}}
+{{template "footer"}}

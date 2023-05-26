@@ -46,6 +46,19 @@ func LogoutHandler(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/login")
 }
 
+func GetClaims(c *gin.Context) *Claims {
+	tokenString, err := c.Cookie("token")
+	tools.CheckError(err, "failed to get jwt token")
+
+	claims := &Claims{}
+	_, err = jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+		return []byte("DigiShop_KEY"), nil
+	})
+	tools.CheckError(err, "failed to jwt parse with claims")
+
+	return claims
+}
+
 func createToken(userID uint) (string, time.Time) {
 	expirationTime := time.Now().Add(24 * time.Hour)
 

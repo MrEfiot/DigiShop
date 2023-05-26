@@ -4,6 +4,7 @@ import (
 	"DigiShop/database"
 	"DigiShop/database/controller"
 	"DigiShop/database/models"
+	"DigiShop/tools"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -115,6 +116,29 @@ func DeleteUserHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "User deleted successfully"})
+}
+
+func GetAllUser(c *gin.Context) []models.User {
+	var users []models.User
+	err := database.DB.Preload("RolePermissions").Find(&users).Error
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get users"})
+	}
+
+	return users
+}
+
+func GetUser(userID uint) models.User {
+	var user models.User
+
+	err := database.DB.Preload("RolePermissions").First(&user, userID).Error
+	tools.CheckError(err, "failed to get user info in view dashboard handler")
+
+	return user
+}
+
+func GetUserRole(user models.User) string {
+	return user.RolePermissions[0].Role
 }
 
 func checkExistingEmailAndPhone(tx *gorm.DB, userForm models.UserForm, c *gin.Context) {

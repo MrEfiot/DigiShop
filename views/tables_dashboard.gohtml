@@ -1,0 +1,88 @@
+{{define "tables"}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/static/css/tables.css">
+
+    <div class="table-wrapper">
+        <div class="table-container">
+
+            <button class="btn btn-primary">Add New User</button>
+            <button class="btn btn-danger" onclick="location.assign('/logout')">logout</button>
+
+            <table class="table table-bordered table-rounded table-hover shadow">
+                <thead class="thead-dark">
+                <tr>
+                    <th class="text-white">ID</th>
+                    <th class="bg-primary text-white">Name</th>
+                    <th class="bg-primary text-white">Family</th>
+                    <th class="bg-primary text-white">Age</th>
+                    <th class="bg-primary text-white">National Code</th>
+                    <th class="bg-primary text-white">Phone Number</th>
+                    <th class="bg-primary text-white">Email</th>
+                    <th class="bg-primary text-white">Role</th>
+                    <th class="bg-primary text-white">Update</th>
+                    <th class="bg-primary text-white">Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $.users}}
+                    {{if ne .ID $.userID}}
+                        <tr>
+                            <td>{{.ID}}</td>
+                            <td>{{.Name}}</td>
+                            <td>{{.Family}}</td>
+                            <td>{{.Age}}</td>
+                            <td>{{.NationalCode}}</td>
+                            <td>{{.PhoneNumber}}</td>
+                            <td>{{.Email}}</td>
+                            <td>
+                                {{range .RolePermissions }}
+                                    {{.Role}}
+                                {{end}}
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">Edit</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    {{else}}
+                        <tr>
+                            <td class="primary-color">{{.ID}}</td>
+                            <td class="primary-color">{{.Name}}</td>
+                            <td class="primary-color">{{.Family}}</td>
+                            <td class="primary-color">{{.Age}}</td>
+                            <td class="primary-color">{{.NationalCode}}</td>
+                            <td class="primary-color">{{.PhoneNumber}}</td>
+                            <td class="primary-color">{{.Email}}</td>
+                            <td class="primary-color">
+                                {{range .RolePermissions }}
+                                    {{.Role}}
+                                {{end}}
+                            </td>
+                            <td class="primary-color">
+                                <button class="btn btn-primary">Edit</button>
+                            </td>
+                            <td class="primary-color">
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    {{end}}
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/static/js/tables.js"></script>
+{{end}}
+
+{{template "header" .}}
+{{template "tables" .}}
+{{template "footer"}}

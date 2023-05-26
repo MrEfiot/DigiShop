@@ -70,12 +70,14 @@ func makeRoutes(router *gin.Engine) {
 
 	// admin routes
 	AdminRoutes(router, accessLevelConfig)
+
+	// Dashboard Routes
+	DashboardRoutes(router, accessLevelConfig)
 }
 
 func mainRoutes(router *gin.Engine) {
 	router.LoadHTMLGlob("views/*")
 	router.GET("/", handler.ViewMainHandler)
-	router.GET("/dashboard", middleware.AccessControlMiddleware("owner", "super_admin", "admin", "user"), handler.ViewDashboardHandler)
 	router.GET("/login", handler.ViewLoginHandler)
 	router.POST("/auth", handler.AuthHandler)
 	router.GET("/logout", handler.LogoutHandler)
